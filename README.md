@@ -1,6 +1,5 @@
 # SPEEDCHECK BABA
 
-Live app: https://speedcheck-baba.netlify.app
 
 A modern, fully client-side internet speed test built with React and Vite. Tests your download and upload speeds in real-time with a live gauge and chart.
 
