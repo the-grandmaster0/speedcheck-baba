@@ -1,39 +1,44 @@
+# SPEEDCHECK BABA
 
-https://speedcheck-baba.netlify.app/#
-link for app above
+Live app: https://speedcheck-baba.netlify.app
 
-
- SPEEDCHECK BABA 
-
-A modern, client-side internet speed test application built with React and Vite. Test your connection's download and upload speeds with real-time visualization and accurate measurements.
+A modern, fully client-side internet speed test built with React and Vite. Tests your download and upload speeds in real-time with a live gauge and chart.
 
 ## Features
-- **Real-time speed testing** with live progress updates every 100-200ms
-- **Parallel upload workers** (8 concurrent streams) for maximum bandwidth saturation
-- **Animated SVG gauge** displaying current speed dynamically
-- **Live history chart** tracking speed fluctuations during tests
-- **Network info display** showing ISP provider and IP address
-- **Responsive design** with glassmorphism aesthetics that works on mobile and desktop
-- **Fully client-side** - no backend required, works entirely in the browser
+
+- **Real-time speed gauge** — animated SVG arc that updates live during the test
+- **Live history chart** — line chart tracking speed fluctuations per phase
+- **Warmup period** — first 1 second of each test is excluded to avoid TCP slow-start spikes
+- **Parallel upload workers** — 6 concurrent streams to saturate available bandwidth
+- **CORS-safe upload** — upload requests are proxied through Vite's dev server to bypass browser CORS restrictions
+- **Network info** — shows your ISP/provider fetched from `ipapi.co` after the test
+- **Responsive design** — works on desktop, tablet, mobile portrait, mobile landscape, and small screens
+- **PWA ready** — includes a service worker and web manifest
 
 ## Tech Stack
+
 - React 19 + Vite 7
-- Chart.js + react-chartjs-2 for data visualization
+- Chart.js + react-chartjs-2
 - Vanilla CSS with glassmorphism and gradient themes
-- XMLHttpRequest for precise progress tracking
+- XMLHttpRequest for precise per-byte progress tracking
 
+## Getting Started
 
-## 🔬 How It Works
-- **Download Test**: Uses Cloudflare CDN endpoints with cache-busting to measure download speeds over 15 seconds
-- **Upload Test**: Runs 8 parallel workers uploading 10MB blobs each to maximize bandwidth utilization, with automatic endpoint fallback
-- **Measurement**: Calculates speed based on cumulative bytes transferred over elapsed time, updated in real-time
+```bash
+npm install
+npm run dev
+```
 
-## 📝 Notes
-- Tests rely on public endpoints (Cloudflare, httpbin.org, postman-echo.com, reqres.in)
-- Results may vary based on endpoint availability, CORS policies, and server load
-- Network info is fetched from `ipapi.co` when a test starts
-- Both download and upload tests run for 15 seconds each
+Then open `http://localhost:5173`.
 
-## 📚 Documentation
-See [Working.md](Working.md) for detailed implementation breakdown and architecture.
+## How It Works
 
+See [Working.md](Working.md) for a detailed breakdown of the measurement logic and architecture.
+
+## Notes
+
+- Download uses Cloudflare CDN endpoints (`speed.cloudflare.com`)
+- Upload is proxied to `speed.cloudflare.com/__up` via Vite dev server proxy to avoid CORS
+- Network info is fetched from `ipapi.co/json/`
+- Each test phase runs for 15 seconds
+- Created by Aditya [(maratanda8-ux)](https://www.github.com/maratanda8-ux)
