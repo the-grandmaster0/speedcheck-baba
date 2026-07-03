@@ -1,5 +1,5 @@
 
-#SPEEDCHECK BABA 
+<h1>SPEEDCHECK BABA</h1> 
 
 A modern, client-side internet speed test application built with React and Vite. Test your connection's download and upload speeds with real-time visualization and accurate measurements.
 
